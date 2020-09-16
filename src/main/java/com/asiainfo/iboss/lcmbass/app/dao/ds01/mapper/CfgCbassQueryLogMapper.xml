@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.iboss.lcmbass.app.dao.ds01.mapper.CfgCbassQueryLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.asiainfo.iboss.lcmbass.app.dao.ds01.po.CfgCbassQueryLog">
+        <id column="LOG_ID" property="logId" />
+        <result column="COMMOND_CODE" property="commondCode" />
+        <result column="ORDER_ID" property="orderId" />
+        <result column="REMARK" property="remark" />
+        <result column="REMARK1" property="remark1" />
+        <result column="INSERT_TIME" property="insertTime" />
+        <result column="SUBORDER_ID" property="suborderId" />
+        <result column="HASH_SUBORDER_ID" property="hashSuborderId" />
+        <result column="PROVINCE_ID" property="provinceId" />
+        <result column="ORDER_STATUS" property="orderStatus" />
+        <result column="STATUS_DESC" property="statusDesc" />
+        <result column="PROVINCE_RELATIONID" property="provinceRelationid" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="MODIFY_TIME" property="modifyTime" />
+        <result column="CONTEXT" property="context" />
+        <result column="REMARK3" property="remark3" />
+        <result column="REMARK2" property="remark2" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        LOG_ID, COMMOND_CODE, ORDER_ID, REMARK, REMARK1, INSERT_TIME, SUBORDER_ID, HASH_SUBORDER_ID, PROVINCE_ID, ORDER_STATUS, STATUS_DESC, PROVINCE_RELATIONID, CREATE_TIME, MODIFY_TIME, CONTEXT, REMARK3, REMARK2
+    </sql>
+
+</mapper>

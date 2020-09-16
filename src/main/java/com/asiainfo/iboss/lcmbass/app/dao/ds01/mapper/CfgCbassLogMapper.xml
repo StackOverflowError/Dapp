@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.iboss.lcmbass.app.dao.ds01.mapper.CfgCbassLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.asiainfo.iboss.lcmbass.app.dao.ds01.po.CfgCbassLog">
+        <id column="LOG_ID" property="logId" />
+        <result column="COMMOND_CODE" property="commondCode" />
+        <result column="TRADE_ID" property="tradeId" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="REQ_CONTENT" property="reqContent" />
+        <result column="RES_CONTENT" property="resContent" />
+        <result column="REMARK" property="remark" />
+        <result column="REMARK1" property="remark1" />
+        <result column="ORDER_ID" property="orderId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        LOG_ID, COMMOND_CODE, TRADE_ID, CREATE_DATE, REQ_CONTENT, RES_CONTENT, REMARK, REMARK1, ORDER_ID
+    </sql>
+
+</mapper>

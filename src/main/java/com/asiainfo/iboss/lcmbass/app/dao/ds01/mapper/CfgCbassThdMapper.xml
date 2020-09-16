@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.iboss.lcmbass.app.dao.ds01.mapper.CfgCbassThdMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.asiainfo.iboss.lcmbass.app.dao.ds01.po.CfgCbassThd">
+        <result column="THD_NAME" property="thdName" />
+        <result column="THD_PROCESS_DOMAIN" property="thdProcessDomain" />
+        <result column="THD_DESC" property="thdDesc" />
+        <result column="BUFFER_SIZE" property="bufferSize" />
+        <result column="WAIT_STRATEGY" property="waitStrategy" />
+        <result column="THD_DTO_CLASS" property="thdDtoClass" />
+        <result column="THD_CTRL_CLASS" property="thdCtrlClass" />
+        <result column="THD_CONSUMER_CLASS" property="thdConsumerClass" />
+        <result column="THD_CONSUMER_MAX_POOL_SIZE" property="thdConsumerMaxPoolSize" />
+        <result column="THD_CONSUMER_SIZE" property="thdConsumerSize" />
+        <result column="THD_EXCEPTION_HANDLER_CLASS" property="thdExceptionHandlerClass" />
+        <result column="THD_PRODUCER_CLASS" property="thdProducerClass" />
+        <result column="THD_PRODUCER_MAX_POOL_SIZE" property="thdProducerMaxPoolSize" />
+        <result column="THD_PRODUCER_SIZE" property="thdProducerSize" />
+        <result column="THD_PRODUCER_SLEEP_TIME" property="thdProducerSleepTime" />
+        <result column="REMOVE_TAG" property="removeTag" />
+        <result column="PARAM1" property="param1" />
+        <result column="PARAM1_DESC" property="param1Desc" />
+        <result column="PARAM2" property="param2" />
+        <result column="PARAM2_DESC" property="param2Desc" />
+        <result column="PARAM3" property="param3" />
+        <result column="PARAM3_DESC" property="param3Desc" />
+        <result column="PARAM4" property="param4" />
+        <result column="PARAM4_DESC" property="param4Desc" />
+        <result column="PARAM5" property="param5" />
+        <result column="PARAM5_DESC" property="param5Desc" />
+        <result column="INSERT_TIME" property="insertTime" />
+        <result column="OPER_NAME" property="operName" />
+        <result column="UPDATE_TIME" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        THD_NAME, THD_PROCESS_DOMAIN, THD_DESC, BUFFER_SIZE, WAIT_STRATEGY, THD_DTO_CLASS, THD_CTRL_CLASS, THD_CONSUMER_CLASS, THD_CONSUMER_MAX_POOL_SIZE, THD_CONSUMER_SIZE, THD_EXCEPTION_HANDLER_CLASS, THD_PRODUCER_CLASS, THD_PRODUCER_MAX_POOL_SIZE, THD_PRODUCER_SIZE, THD_PRODUCER_SLEEP_TIME, REMOVE_TAG, PARAM1, PARAM1_DESC, PARAM2, PARAM2_DESC, PARAM3, PARAM3_DESC, PARAM4, PARAM4_DESC, PARAM5, PARAM5_DESC, INSERT_TIME, OPER_NAME, UPDATE_TIME
+    </sql>
+
+</mapper>

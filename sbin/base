@@ -1,0 +1,135 @@
+#!bin/sh
+
+
+LOGBACK_ROOT=/home/qhbuild/backlogs
+LOG_PATH=/home/qhwebapp/logs
+IS_TIMER=false
+PROJECT_NAME=asiainfo-iboss-lcmbass-app
+MAX_POOL=280
+INTF_XMX=512M
+INTF_XMS=512M
+INTF_PORT=9002
+STOP_PORT=9052
+REMOTE_IP=10.1.243.32
+INTF_SYSCODE=LCMABASS_A
+SYS_IBOSS_VERSION=LCmbass-1.0
+
+
+
+
+
+#定义最大最小内存
+INTF_Xms=$INTF_XMS
+INTF_Xmx=$INTF_XMX
+INTF_Xss=1m
+INTF_PermSize=512m
+#定义Jetty参数
+JETTY_MAX_POOL=$MAX_POOL
+
+#当启动时传入端口就用这个端口，否则使用发布时的端口
+if [ "$1" -gt 0 ] 2>/dev/null ;then  
+    INTF_PORT=$1
+    STOP_PORT=`expr $1 + 1`
+fi
+
+#系统编码
+if [ "$INTF_SYSCODE" = ""  ];then
+        echo "发布过程中未获取到系统编码，请重新发布应用,退出！"
+        exit;
+fi
+
+
+#切回工作目录
+cd $HOME/$INTF_SYSCODE/bin
+
+#是否是Timer,false:不是Timer服务，true:是Timer服务
+if [[ $INTF_SYSCODE =~ TIMER || $INTF_SYSCODE =~ Cron ]];then
+    IS_TIMER=true
+fi
+
+
+#基本不改动
+#jetty服务路径
+JETTY_HOME=$HOME/$INTF_SYSCODE
+
+#代码路径
+JETTY_BASE=$HOME/$INTF_SYSCODE/webapps
+
+#日志目录
+LOG_DIR=$HOME/logs/$INTF_SYSCODE
+#当天日期
+NOW_DATE=`date +%Y%m%d`
+#启动日志目录
+START_FILE=$LOG_DIR/start
+
+#创建日志目录及日志
+mkdir -p $LOG_DIR
+mkdir -p $HOME/wlsHome/$INTF_SYSCODE
+touch $START_FILE
+touch $LOG_DIR/console
+cd $JETTY_HOME/bin
+
+
+#表示在内存出现OutofMemory的时候，把Heap转存(Dump)到文件以便后续分析，文件名通常是java_pid<pid>.hprof，其中pid为该程序的进程号
+JAVA_OPTS="-XX:+HeapDumpOnOutOfMemoryError"
+
+#用来指定heap转存文件的存储路径，需要指定的路径下有足够的空间来保存转存文件
+JAVA_OPTS="$JAVA_OPTS -XX:HeapDumpPath=$LOG_DIR"
+
+#server模式启动
+JAVA_OPTS="$JAVA_OPTS -server"
+
+#用来设置永久区的最大值。永久区是存放类以及常量池的地方，如果程序需要加载的class数量非常多的话，就需要增大永久区的大小。
+#JAVA_OPTS="$JAVA_OPTS -XX:MaxPermSize=$INTF_PermSize"
+
+#设置初始 Java 堆大小
+JAVA_OPTS="$JAVA_OPTS -Xms$INTF_Xms"
+#设置最大 Java 堆大小
+JAVA_OPTS="$JAVA_OPTS -Xmx$INTF_Xmx"
+#设置 Java 线程堆栈大小
+JAVA_OPTS="$JAVA_OPTS -Xss$INTF_Xss"
+
+
+
+
+#设置jetty参数
+#主目录
+JETTY_OPTS="-DHOME_PATH=$HOME"
+#web目录
+JETTY_OPTS="$JETTY_OPTS -DINTF_WLS_HOME=$HOME/wlsHome/$INTF_SYSCODE"
+#系统编码
+JETTY_OPTS="$JETTY_OPTS -DINTF_SYSCODE=$INTF_SYSCODE"
+#日志路径
+JETTY_OPTS="$JETTY_OPTS -DLOG_PATH=$LOG_PATH"
+#禁用版本信息
+JETTY_OPTS="$JETTY_OPTS -Djetty.httpConfig.sendServerVersion=false"
+#设置默认附件路径
+JETTY_OPTS="$JETTY_OPTS -DATTACH_FILE_DIR=$HOME/attach"
+#最大连接数
+JETTY_OPTS="$JETTY_OPTS -Djetty.threadPool.maxThreads=$JETTY_MAX_POOL"
+#最大接收请求数Integer.MaxValue
+JETTY_OPTS="$JETTY_OPTS -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2147483647"
+JETTY_OPTS="$JETTY_OPTS -Dorg.eclipse.jetty.server.Request.maxFormKeys=2147483647"
+
+#设置Spring参数
+#加载环境配置
+SPRING_OPTS="$SPRING_OPTS -Dserver.port=$INTF_PORT"   #端口
+SPRING_OPTS="$SPRING_OPTS -Dmanagement.server.port=$STOP_PORT"   #系统管理、停止端口
+
+
+
+clear
+echo "----------------打印基础信息  开始-----------------------"
+echo "  系统监听端口：$INTF_PORT"
+echo "  系统停止监听端口：$STOP_PORT"
+echo "  系统编码：$INTF_SYSCODE"
+echo "  是否是Timer服务：$IS_TIMER"
+echo "  jetty主目录：$JETTY_HOME"
+echo "  jetty最大连接数：$JETTY_MAX_POOL"
+echo "  日志路径：$LOG_DIR/console"
+echo "  日志备份路径：$LOGBACK_ROOT/$INTF_SYSCODE"
+echo "  启动日志目录：$START_FILE"
+echo "  java路径：$JAVA_HOME"
+echo "  java堆最大值：$INTF_Xmx"
+echo "  java堆最小值：$INTF_Xms"
+echo "----------------打印基础信息  结束-----------------------"

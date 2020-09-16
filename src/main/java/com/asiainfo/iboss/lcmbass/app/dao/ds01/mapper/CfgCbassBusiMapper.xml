@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.iboss.lcmbass.app.dao.ds01.mapper.CfgCbassBusiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.asiainfo.iboss.lcmbass.app.dao.ds01.po.CfgCbassBusi">
+        <id column="COMMOND_CODE" property="commondCode" />
+        <result column="CONTRACT_ACCOUNT" property="contractAccount" />
+        <result column="FLOW_ID" property="flowId" />
+        <result column="ACCESS_SYSCODE" property="accessSyscode" />
+        <result column="ACTOR" property="actor" />
+        <result column="PEMISSION" property="pemission" />
+        <result column="PUBLIC_KEY" property="publicKey" />
+        <result column="WALLET_BASE_URL" property="walletBaseUrl" />
+        <result column="CHAIN_BASE_URL" property="chainBaseUrl" />
+        <result column="HISTORY_BASE_URL" property="historyBaseUrl" />
+        <result column="CONTRACT_CODE" property="contractCode" />
+        <result column="ACTION" property="action" />
+        <result column="PLAT_CODE" property="platCode" />
+        <result column="PROCESS_CLASS_FULL_NAME" property="processClassFullName" />
+        <result column="PARAM1" property="param1" />
+        <result column="PARAM1_DESC" property="param1Desc" />
+        <result column="PARAM2" property="param2" />
+        <result column="PARAM2_DESC" property="param2Desc" />
+        <result column="PARAM3" property="param3" />
+        <result column="PARAM3_DESC" property="param3Desc" />
+        <result column="PARAM4" property="param4" />
+        <result column="PARAM4_DESC" property="param4Desc" />
+        <result column="PARAM5" property="param5" />
+        <result column="PARAM5_DESC" property="param5Desc" />
+        <result column="REMOVE_TAG" property="removeTag" />
+        <result column="OPER_NAME" property="operName" />
+        <result column="INSERT_TIME" property="insertTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        COMMOND_CODE, CONTRACT_ACCOUNT, FLOW_ID, ACCESS_SYSCODE, ACTOR, PEMISSION, PUBLIC_KEY, WALLET_BASE_URL, CHAIN_BASE_URL, HISTORY_BASE_URL, CONTRACT_CODE, ACTION, PLAT_CODE, PROCESS_CLASS_FULL_NAME, PARAM1, PARAM1_DESC, PARAM2, PARAM2_DESC, PARAM3, PARAM3_DESC, PARAM4, PARAM4_DESC, PARAM5, PARAM5_DESC, REMOVE_TAG, OPER_NAME, INSERT_TIME, UPDATE_TIME
+    </sql>
+
+    <select id="getInfoByCommondCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from CFG_CBASS_BUSI
+        <where>
+            COMMOND_CODE = #{commondCode}
+        </where>
+    </select>
+
+</mapper>

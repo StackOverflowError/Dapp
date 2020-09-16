@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.iboss.lcmbass.app.dao.ds01.mapper.CfgCbassParamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.asiainfo.iboss.lcmbass.app.dao.ds01.po.CfgCbassParam">
+        <id column="SYSCODE" property="syscode" />
+        <result column="CONFIG_NAME" property="configName" />
+        <result column="CONFIG_DESC" property="configDesc" />
+        <result column="VALUE_SEQ" property="valueSeq" />
+        <result column="PARAM_NAME" property="paramName" />
+        <result column="PARAM_VALUE" property="paramValue" />
+        <result column="VALUE_DESC" property="valueDesc" />
+        <result column="REMOVE_TAG" property="removeTag" />
+        <result column="OPER_NAME" property="operName" />
+        <result column="INSERT_TIME" property="insertTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SYSCODE, CONFIG_NAME, CONFIG_DESC, VALUE_SEQ, PARAM_NAME, PARAM_VALUE, VALUE_DESC, REMOVE_TAG, OPER_NAME, INSERT_TIME, UPDATE_TIME
+    </sql>
+
+</mapper>
